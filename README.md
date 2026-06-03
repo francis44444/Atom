@@ -11,8 +11,14 @@ Welcome to the central command hub for the automated quantum and climate researc
 ### 2. MO Project (`mo_tracking.py`)
 * **Objective:** Molecular orbital tracking and quantum state optimization.
 
-### 3. Unified-Field-Control (`unified_control.py`)
-* **Objective:** Modeling the intersection of General Relativity, quantum mechanics, and electromagnetic field variables ($emf\_frequency$).
+## Unified-Field-Control Core Framework
+
+Integrating the macro-dynamics of **General Relativity (Gravity)** with the fundamental particle interactions of **Quantum Mechanics (The Standard Model)** using high-energy data metrics inspired by CERN/LHC.
+
+### Core Physics Pillars
+* **Gravity:** Spacetime curvature mechanics ($G$).
+* **Relativity:** High-energy spacetime coordinate transformations ($c$).
+* **Quantum Mechanics:** Elementary particle fields and mass generation via the Standard Model (Higgs Boson).
 
 ### 4. Global Warming Project (`climate_feedback.py`)
 * **Objective:** Climate feedback loop simulations based on the "Arctic Race Against the Melt" engine.
