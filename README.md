@@ -1,11 +1,22 @@
-# Unified-Field-Control-
-Agent
-# Unified-Field-Control: Multi-Scale Research Architecture
+# Unified-Field-Control & Research Suite
 
-Welcome to the central command hub for the **Unified-Field-Control** repository. This environment leverages autonomous AI agents, Google Colab notebooks, and API orchestrations to run, validate, and track deep simulations across three tightly mapped scientific domains.
+Welcome to the central command hub for the automated quantum and climate research pipeline. This repository connects local research workflows directly to Google Colab and the IonQ Quantum Cloud.
+
+## Core Research Modules
+
+### 1. Atoms Project (`atom_simulation.py`)
+* **Objective:** 3D quantum cloud simulation of Hydrogen ($H$) and Helium ($He$) atoms.
+* **Frameworks:** PennyLane, Qiskit, IonQ Backend.
+
+### 2. MO Project (`mo_tracking.py`)
+* **Objective:** Molecular orbital tracking and quantum state optimization.
+
+### 3. Unified-Field-Control (`unified_control.py`)
+* **Objective:** Modeling the intersection of General Relativity, quantum mechanics, and electromagnetic field variables ($emf\_frequency$).
+
+### 4. Global Warming Project (`climate_feedback.py`)
+* **Objective:** Climate feedback loop simulations based on the "Arctic Race Against the Melt" engine.
 
 ---
-
-## 🌌 The Three Core Projects
-
-This architecture maps reality sequentially from subatomic interactions up to macro-space-time constraints, preventing data loss or "catastrophic forgetting" during AI training loops.
+## Connection Pipeline
+[GitHub Repository] ──> [Google Colab (PennyLane/Qiskit)] ──> [IonQ Quantum Cloud API]
