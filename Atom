@@ -11,17 +11,162 @@
       ]
     },
     {
-      "cell_type": "code",
-      "execution_count": null,
+      "cell_type": "markdown",
       "metadata": {
-        "id": "9f5f74a6"
+        "id": "858644d4"
       },
-      "outputs": [],
+      "source": [
+        "### Global API Key Configuration\n",
+        "Run this cell first to set your API key globally. Cells using `os.getenv(\"IONQ_API_KEY\")` or defaulting to the environment will automatically pick this up."
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "2a56f561",
+        "outputId": "541368be-206c-4505-d40f-eed111a94ad5"
+      },
+      "source": [
+        "import os\n",
+        "from google.colab import userdata\n",
+        "\n",
+        "# Attempt to retrieve the API key from Colab Secrets\n",
+        "try:\n",
+        "    ionq_api_key = userdata.get('IONQ_API_KEY')\n",
+        "    os.environ['IONQ_API_KEY'] = ionq_api_key\n",
+        "    print(\"IonQ API Key loaded from Colab Secrets!\")\n",
+        "except userdata.SecretNotFoundError:\n",
+        "    print(\"Error: 'IONQ_API_KEY' not found in Colab Secrets.\")\n",
+        "    print(\"Please add your IonQ API Key to Colab Secrets (🔑 icon on the left sidebar) and enable notebook access.\")\n",
+        "    # Set a placeholder to prevent immediate crashes, but execution will still be unauthorized\n",
+        "    os.environ['IONQ_API_KEY'] = 'YOUR_IONQ_API_KEY_HERE'\n",
+        "except Exception as e:\n",
+        "    print(f\"An unexpected error occurred while retrieving API key: {e}\")\n",
+        "    os.environ['IONQ_API_KEY'] = 'YOUR_IONQ_API_KEY_HERE'\n"
+      ],
+      "execution_count": 4,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Error: 'IONQ_API_KEY' not found in Colab Secrets.\n",
+            "Please add your IonQ API Key to Colab Secrets (🔑 icon on the left sidebar) and enable notebook access.\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 2,
+      "metadata": {
+        "id": "9f5f74a6",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "7fe3bab7-ac82-46cc-c4d7-156e3ab7b907"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "\u001b[?25l     \u001b[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m0.0/57.3 kB\u001b[0m \u001b[31m?\u001b[0m eta \u001b[36m-:--:--\u001b[0m\r\u001b[2K     \u001b[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m57.3/57.3 kB\u001b[0m \u001b[31m2.4 MB/s\u001b[0m eta \u001b[36m0:00:00\u001b[0m\n",
+            "\u001b[2K   \u001b[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m60.9/60.9 kB\u001b[0m \u001b[31m3.1 MB/s\u001b[0m eta \u001b[36m0:00:00\u001b[0m\n",
+            "\u001b[2K   \u001b[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m5.4/5.4 MB\u001b[0m \u001b[31m31.2 MB/s\u001b[0m eta \u001b[36m0:00:00\u001b[0m\n",
+            "\u001b[2K   \u001b[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m937.5/937.5 kB\u001b[0m \u001b[31m14.5 MB/s\u001b[0m eta \u001b[36m0:00:00\u001b[0m\n",
+            "\u001b[2K   \u001b[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m51.5/51.5 kB\u001b[0m \u001b[31m3.4 MB/s\u001b[0m eta \u001b[36m0:00:00\u001b[0m\n",
+            "\u001b[2K   \u001b[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m25.5/25.5 MB\u001b[0m \u001b[31m19.0 MB/s\u001b[0m eta \u001b[36m0:00:00\u001b[0m\n",
+            "\u001b[2K   \u001b[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m167.2/167.2 kB\u001b[0m \u001b[31m13.9 MB/s\u001b[0m eta \u001b[36m0:00:00\u001b[0m\n",
+            "\u001b[2K   \u001b[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m8.8/8.8 MB\u001b[0m \u001b[31m22.2 MB/s\u001b[0m eta \u001b[36m0:00:00\u001b[0m\n",
+            "\u001b[?25h\u001b[31mERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.\n",
+            "moviepy 1.0.3 requires decorator<5.0,>=4.0.2, but you have decorator 5.3.1 which is incompatible.\u001b[0m\u001b[31m\n",
+            "\u001b[0mEnvironment ready.\n"
+          ]
+        }
+      ],
       "source": [
         "import sys\n",
         "# Ensure all required libraries are installed\n",
         "!pip install qiskit qiskit-ionq pennylane pennylane-ionq --quiet\n",
         "print(\"Environment ready.\")"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "5e951175",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 1000
+        },
+        "outputId": "cd234df8-69d9-45cd-ea85-41741774b4af"
+      },
+      "source": [
+        "import os\n",
+        "from qiskit import QuantumCircuit\n",
+        "from qiskit_ionq import IonQProvider\n",
+        "\n",
+        "# 1. Initialize the provider using the global API key\n",
+        "api_key = os.getenv('IONQ_API_KEY')\n",
+        "provider = IonQProvider(api_key)\n",
+        "\n",
+        "# 2. Select the IonQ Simulator backend for testing\n",
+        "backend = provider.get_backend(\"ionq_simulator\")\n",
+        "\n",
+        "# 3. Create a simple 2-qubit Bell state circuit\n",
+        "qc = QuantumCircuit(2, 2)\n",
+        "qc.h(0)\n",
+        "qc.cx(0, 1)\n",
+        "qc.measure([0, 1], [0, 1])\n",
+        "\n",
+        "print(\"Submitting the circuit to IonQ Simulator...\")\n",
+        "# 4. Run the circuit\n",
+        "job = backend.run(qc, shots=100)\n",
+        "\n",
+        "# 5. Wait for and retrieve the results\n",
+        "result = job.result()\n",
+        "counts = result.get_counts()\n",
+        "\n",
+        "print(\"\\nConnection Successful!\")\n",
+        "print(\"Measurement counts:\", counts)\n"
+      ],
+      "execution_count": 3,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stderr",
+          "text": [
+            "/usr/local/lib/python3.12/dist-packages/qiskit_ionq/ionq_backend.py:129: IonQTranspileLevelWarning: Transpiler default optimization_level=2. IonQ (QIS) recommends 0-1 to avoid aggressive re-synthesis; use transpile(..., optimization_level=1).\n",
+            "  warn_bad_transpile_level()\n"
+          ]
+        },
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Submitting the circuit to IonQ Simulator...\n"
+          ]
+        },
+        {
+          "output_type": "error",
+          "ename": "IonQAPIError",
+          "evalue": "IonQAPIError(message='Unauthorized',status_code=401,headers={'Date': 'Tue, 04 Aug 2026 20:09:27 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'access-control-allow-credentials': 'true', 'access-control-expose-headers': 'x-ionq-session', 'ratelimit-limit': '500', 'ratelimit-remaining': '499', 'ratelimit-reset': '1', 'strict-transport-security': 'max-age=31536000; includeSubDomains', 'vary': 'Origin', 'x-frame-options': 'DENY', 'x-ratelimit-limit-second': '500', 'x-ratelimit-remaining-second': '499', 'cf-cache-status': 'DYNAMIC', 'Server': 'cloudflare', 'CF-RAY': 'a260332c7fc5e814-ORD'},body={\"error\":\"Unauthorized\",\"statusCode\":401,\"message\":\"Unauthorized\"},error_type='Unauthorized')",
+          "traceback": [
+            "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m",
+            "\u001b[0;31mIonQAPIError\u001b[0m                              Traceback (most recent call last)",
+            "\u001b[0;32m/tmp/ipykernel_1691/2463105104.py\u001b[0m in \u001b[0;36m<cell line: 0>\u001b[0;34m()\u001b[0m\n\u001b[1;32m     18\u001b[0m \u001b[0mprint\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m\"Submitting the circuit to IonQ Simulator...\"\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m     19\u001b[0m \u001b[0;31m# 4. Run the circuit\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m---> 20\u001b[0;31m \u001b[0mjob\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0mbackend\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mrun\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mqc\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mshots\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0;36m100\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m     21\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m     22\u001b[0m \u001b[0;31m# 5. Wait for and retrieve the results\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+            "\u001b[0;32m/usr/local/lib/python3.12/dist-packages/qiskit_ionq/ionq_backend.py\u001b[0m in \u001b[0;36mrun\u001b[0;34m(self, run_input, **options)\u001b[0m\n\u001b[1;32m    240\u001b[0m             \u001b[0mpassed_args\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0mrun_opts\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    241\u001b[0m         )\n\u001b[0;32m--> 242\u001b[0;31m         \u001b[0mjob\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0msubmit\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m    243\u001b[0m         \u001b[0;32mreturn\u001b[0m \u001b[0mjob\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    244\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n",
+            "\u001b[0;32m/usr/local/lib/python3.12/dist-packages/qiskit_ionq/ionq_job.py\u001b[0m in \u001b[0;36msubmit\u001b[0;34m(self)\u001b[0m\n\u001b[1;32m    315\u001b[0m                 \u001b[0;34m\"Please create a job with a circuit and try again.\"\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    316\u001b[0m             )\n\u001b[0;32m--> 317\u001b[0;31m         \u001b[0mresponse\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m_client\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0msubmit_job\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mjob\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0mself\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m    318\u001b[0m         \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m_job_id\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0mresponse\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0;34m\"id\"\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    319\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n",
+            "\u001b[0;32m/usr/local/lib/python3.12/dist-packages/qiskit_ionq/helpers.py\u001b[0m in \u001b[0;36mf_retry\u001b[0;34m(*args, **kwargs)\u001b[0m\n\u001b[1;32m    866\u001b[0m             \u001b[0;32mwhile\u001b[0m \u001b[0m_tries\u001b[0m \u001b[0;34m!=\u001b[0m \u001b[0;36m0\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    867\u001b[0m                 \u001b[0;32mtry\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m--> 868\u001b[0;31m                     \u001b[0;32mreturn\u001b[0m \u001b[0mfunc\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m*\u001b[0m\u001b[0margs\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0;34m**\u001b[0m\u001b[0mkwargs\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m    869\u001b[0m                 \u001b[0;32mexcept\u001b[0m \u001b[0mexceptions\u001b[0m \u001b[0;32mas\u001b[0m \u001b[0mexception\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    870\u001b[0m                     \u001b[0m_tries\u001b[0m \u001b[0;34m-=\u001b[0m \u001b[0;36m1\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+            "\u001b[0;32m/usr/local/lib/python3.12/dist-packages/qiskit_ionq/ionq_client.py\u001b[0m in \u001b[0;36msubmit_job\u001b[0;34m(self, job)\u001b[0m\n\u001b[1;32m    146\u001b[0m             \u001b[0mtimeout\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0;36m30\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    147\u001b[0m         )\n\u001b[0;32m--> 148\u001b[0;31m         \u001b[0mexceptions\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mIonQAPIError\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mraise_for_status\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mres\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m    149\u001b[0m         \u001b[0;32mreturn\u001b[0m \u001b[0mres\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mjson\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    150\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n",
+            "\u001b[0;32m/usr/local/lib/python3.12/dist-packages/qiskit_ionq/exceptions.py\u001b[0m in \u001b[0;36mraise_for_status\u001b[0;34m(cls, response)\u001b[0m\n\u001b[1;32m    123\u001b[0m         \u001b[0;32mif\u001b[0m \u001b[0m_is_retriable\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mresponse\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mrequest\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mmethod\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mstatus_code\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    124\u001b[0m             \u001b[0;32mraise\u001b[0m \u001b[0mIonQRetriableError\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mres\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m--> 125\u001b[0;31m         \u001b[0;32mraise\u001b[0m \u001b[0mres\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m    126\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    127\u001b[0m     \u001b[0;34m@\u001b[0m\u001b[0mclassmethod\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+            "\u001b[0;31mIonQAPIError\u001b[0m: IonQAPIError(message='Unauthorized',status_code=401,headers={'Date': 'Tue, 04 Aug 2026 20:09:27 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'access-control-allow-credentials': 'true', 'access-control-expose-headers': 'x-ionq-session', 'ratelimit-limit': '500', 'ratelimit-remaining': '499', 'ratelimit-reset': '1', 'strict-transport-security': 'max-age=31536000; includeSubDomains', 'vary': 'Origin', 'x-frame-options': 'DENY', 'x-ratelimit-limit-second': '500', 'x-ratelimit-remaining-second': '499', 'cf-cache-status': 'DYNAMIC', 'Server': 'cloudflare', 'CF-RAY': 'a260332c7fc5e814-ORD'},body={\"error\":\"Unauthorized\",\"statusCode\":401,\"message\":\"Unauthorized\"},error_type='Unauthorized')"
+          ]
+        }
       ]
     },
     {
@@ -42,6 +187,42 @@
       ],
       "metadata": {
         "id": "eyqH08Psyyd7"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "!pip install google-colab ...\n"
+      ],
+      "metadata": {
+        "id": "W-wsMmmJX546"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# ❌ REMOVE THESE - THEY BREAK THE COLAB KERNEL:\n",
+        "!pip install google-colab\n",
+        "!pip install --upgrade google-colab\n"
+      ],
+      "metadata": {
+        "id": "0ae9BmIbY2LR"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# ✅ SAFE TO RUN:\n",
+        "!pip install \"numpy>=2.0\" qiskit cirq==1.5.0\n"
+      ],
+      "metadata": {
+        "id": "nj9Yir8HY-oP"
       },
       "execution_count": null,
       "outputs": []
@@ -122,7 +303,7 @@
         "\n",
         "# 1. Initialize the IonQ Provider using your secure API key\n",
         "# Replace 'YOUR_IONQ_API_KEY' with your actual token string if not set in environment\n",
-        "IONQ_TOKEN = os.getenv(\"IONQ_API_KEY\", \"YOUR_IONQ_API_KEY\")\n",
+        "IONQ_TOKEN = os.getenv(\"IONQ_API_KEY\", \"\")\n",
         "provider = IonQProvider(IONQ_TOKEN)\n",
         "\n",
         "# 2. Select the Target Backend\n",
@@ -155,6 +336,26 @@
       ],
       "metadata": {
         "id": "ZkgMGfqZyzZ7"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "from google.colab import userdata\n",
+        "\n",
+        "# Safely attempt to retrieve the API key\n",
+        "try:\n",
+        "    # Make sure the string matches the Name you gave the secret exactly\n",
+        "    ionq_api_key = userdata.get('IONQ_API_KEY')\n",
+        "    print(\"API Key successfully retrieved!\")\n",
+        "except userdata.SecretNotFoundError:\n",
+        "    print(\"Error: Secret 'IONQ_API_KEY' not found.\")\n",
+        "    print(\"Please click the 🔑 icon on the left, add the secret, and grant Notebook access.\")"
+      ],
+      "metadata": {
+        "id": "IXoGOoYQIWiv"
       },
       "execution_count": null,
       "outputs": []
@@ -12284,9 +12485,9 @@
   "metadata": {
     "colab": {
       "provenance": [],
-      "selectedAiContext": "learn_mode",
+      "selectedAiContext": "default",
       "mount_file_id": "19zOSKu3blR9hPNPYPWImb7-ANoBQ2GUV",
-      "authorship_tag": "ABX9TyPH+TxAwQ5Nod3brW9LIJEU",
+      "authorship_tag": "ABX9TyN9agskuxL3A9WhkrwgmbKX",
       "include_colab_link": true
     },
     "kernelspec": {
