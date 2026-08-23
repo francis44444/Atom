@@ -1,0 +1,10 @@
+[flake8]
+# Exclude Jupyter notebook files that masquerade as Python
+exclude = 
+    .git,
+    __pycache__,
+    docs,
+    .venv,
+    unified_control.py
+max-line-length = 127
+max-complexity = 10
