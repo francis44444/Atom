@@ -5,6 +5,7 @@ exclude =
     __pycache__,
     docs,
     .venv,
-    unified_control.py
+    unified_control.py,
+    *.ipynb
 max-line-length = 127
 max-complexity = 10
