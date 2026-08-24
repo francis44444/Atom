@@ -27,64 +27,52 @@
           "base_uri": "https://localhost:8080/"
         },
         "id": "2a56f561",
-        "outputId": "541368be-206c-4505-d40f-eed111a94ad5"
+        "outputId": "a4af051e-629b-490e-8351-d4cda8585088"
       },
       "source": [
         "import os\n",
         "from google.colab import userdata\n",
         "\n",
-        "# Attempt to retrieve the API key from Colab Secrets\n",
-        "try:\n",
-        "    ionq_api_key = userdata.get('IONQ_API_KEY')\n",
-        "    os.environ['IONQ_API_KEY'] = ionq_api_key\n",
-        "    print(\"IonQ API Key loaded from Colab Secrets!\")\n",
-        "except userdata.SecretNotFoundError:\n",
-        "    print(\"Error: 'IONQ_API_KEY' not found in Colab Secrets.\")\n",
-        "    print(\"Please add your IonQ API Key to Colab Secrets (🔑 icon on the left sidebar) and enable notebook access.\")\n",
-        "    # Set a placeholder to prevent immediate crashes, but execution will still be unauthorized\n",
-        "    os.environ['IONQ_API_KEY'] = 'YOUR_IONQ_API_KEY_HERE'\n",
-        "except Exception as e:\n",
-        "    print(f\"An unexpected error occurred while retrieving API key: {e}\")\n",
-        "    os.environ['IONQ_API_KEY'] = 'YOUR_IONQ_API_KEY_HERE'\n"
+        "# Set the API key globally as requested\n",
+        "os.environ['IONQ_API_KEY'] = 'S6N68KQL4E7uMwM1IBunkMzUmbp6zUDd'\n",
+        "print(\"IonQ API Key loaded successfully!\")\n"
       ],
-      "execution_count": 4,
+      "execution_count": null,
       "outputs": [
         {
           "output_type": "stream",
           "name": "stdout",
           "text": [
-            "Error: 'IONQ_API_KEY' not found in Colab Secrets.\n",
-            "Please add your IonQ API Key to Colab Secrets (🔑 icon on the left sidebar) and enable notebook access.\n"
+            "IonQ API Key loaded successfully!\n"
           ]
         }
       ]
     },
     {
       "cell_type": "code",
-      "execution_count": 2,
+      "source": [],
+      "metadata": {
+        "id": "xPA1ZShgcG-N"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
       "metadata": {
         "id": "9f5f74a6",
         "colab": {
           "base_uri": "https://localhost:8080/"
         },
-        "outputId": "7fe3bab7-ac82-46cc-c4d7-156e3ab7b907"
+        "outputId": "646a5e42-d508-4bef-9df6-9851969e5caf"
       },
       "outputs": [
         {
           "output_type": "stream",
           "name": "stdout",
           "text": [
-            "\u001b[?25l     \u001b[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m0.0/57.3 kB\u001b[0m \u001b[31m?\u001b[0m eta \u001b[36m-:--:--\u001b[0m\r\u001b[2K     \u001b[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m57.3/57.3 kB\u001b[0m \u001b[31m2.4 MB/s\u001b[0m eta \u001b[36m0:00:00\u001b[0m\n",
-            "\u001b[2K   \u001b[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m60.9/60.9 kB\u001b[0m \u001b[31m3.1 MB/s\u001b[0m eta \u001b[36m0:00:00\u001b[0m\n",
-            "\u001b[2K   \u001b[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m5.4/5.4 MB\u001b[0m \u001b[31m31.2 MB/s\u001b[0m eta \u001b[36m0:00:00\u001b[0m\n",
-            "\u001b[2K   \u001b[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m937.5/937.5 kB\u001b[0m \u001b[31m14.5 MB/s\u001b[0m eta \u001b[36m0:00:00\u001b[0m\n",
-            "\u001b[2K   \u001b[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m51.5/51.5 kB\u001b[0m \u001b[31m3.4 MB/s\u001b[0m eta \u001b[36m0:00:00\u001b[0m\n",
-            "\u001b[2K   \u001b[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m25.5/25.5 MB\u001b[0m \u001b[31m19.0 MB/s\u001b[0m eta \u001b[36m0:00:00\u001b[0m\n",
-            "\u001b[2K   \u001b[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m167.2/167.2 kB\u001b[0m \u001b[31m13.9 MB/s\u001b[0m eta \u001b[36m0:00:00\u001b[0m\n",
-            "\u001b[2K   \u001b[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m8.8/8.8 MB\u001b[0m \u001b[31m22.2 MB/s\u001b[0m eta \u001b[36m0:00:00\u001b[0m\n",
-            "\u001b[?25h\u001b[31mERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.\n",
-            "moviepy 1.0.3 requires decorator<5.0,>=4.0.2, but you have decorator 5.3.1 which is incompatible.\u001b[0m\u001b[31m\n",
-            "\u001b[0mEnvironment ready.\n"
+            "Environment ready.\n"
           ]
         }
       ],
@@ -100,10 +88,9 @@
       "metadata": {
         "id": "5e951175",
         "colab": {
-          "base_uri": "https://localhost:8080/",
-          "height": 1000
+          "base_uri": "https://localhost:8080/"
         },
-        "outputId": "cd234df8-69d9-45cd-ea85-41741774b4af"
+        "outputId": "7cfb7eac-2859-466d-bf4c-9638a555c300"
       },
       "source": [
         "import os\n",
@@ -114,8 +101,8 @@
         "api_key = os.getenv('IONQ_API_KEY')\n",
         "provider = IonQProvider(api_key)\n",
         "\n",
-        "# 2. Select the IonQ Simulator backend for testing\n",
-        "backend = provider.get_backend(\"ionq_simulator\")\n",
+        "# 2. Select the IonQ simulator backend for execution\n",
+        "backend = provider.get_backend(\"simulator\")\n",
         "\n",
         "# 3. Create a simple 2-qubit Bell state circuit\n",
         "qc = QuantumCircuit(2, 2)\n",
@@ -123,7 +110,7 @@
         "qc.cx(0, 1)\n",
         "qc.measure([0, 1], [0, 1])\n",
         "\n",
-        "print(\"Submitting the circuit to IonQ Simulator...\")\n",
+        "print(f\"Submitting the circuit to {backend.name}...\")\n",
         "# 4. Run the circuit\n",
         "job = backend.run(qc, shots=100)\n",
         "\n",
@@ -134,7 +121,7 @@
         "print(\"\\nConnection Successful!\")\n",
         "print(\"Measurement counts:\", counts)\n"
       ],
-      "execution_count": 3,
+      "execution_count": null,
       "outputs": [
         {
           "output_type": "stream",
@@ -148,23 +135,10 @@
           "output_type": "stream",
           "name": "stdout",
           "text": [
-            "Submitting the circuit to IonQ Simulator...\n"
-          ]
-        },
-        {
-          "output_type": "error",
-          "ename": "IonQAPIError",
-          "evalue": "IonQAPIError(message='Unauthorized',status_code=401,headers={'Date': 'Tue, 04 Aug 2026 20:09:27 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'access-control-allow-credentials': 'true', 'access-control-expose-headers': 'x-ionq-session', 'ratelimit-limit': '500', 'ratelimit-remaining': '499', 'ratelimit-reset': '1', 'strict-transport-security': 'max-age=31536000; includeSubDomains', 'vary': 'Origin', 'x-frame-options': 'DENY', 'x-ratelimit-limit-second': '500', 'x-ratelimit-remaining-second': '499', 'cf-cache-status': 'DYNAMIC', 'Server': 'cloudflare', 'CF-RAY': 'a260332c7fc5e814-ORD'},body={\"error\":\"Unauthorized\",\"statusCode\":401,\"message\":\"Unauthorized\"},error_type='Unauthorized')",
-          "traceback": [
-            "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m",
-            "\u001b[0;31mIonQAPIError\u001b[0m                              Traceback (most recent call last)",
-            "\u001b[0;32m/tmp/ipykernel_1691/2463105104.py\u001b[0m in \u001b[0;36m<cell line: 0>\u001b[0;34m()\u001b[0m\n\u001b[1;32m     18\u001b[0m \u001b[0mprint\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m\"Submitting the circuit to IonQ Simulator...\"\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m     19\u001b[0m \u001b[0;31m# 4. Run the circuit\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m---> 20\u001b[0;31m \u001b[0mjob\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0mbackend\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mrun\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mqc\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mshots\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0;36m100\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m     21\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m     22\u001b[0m \u001b[0;31m# 5. Wait for and retrieve the results\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
-            "\u001b[0;32m/usr/local/lib/python3.12/dist-packages/qiskit_ionq/ionq_backend.py\u001b[0m in \u001b[0;36mrun\u001b[0;34m(self, run_input, **options)\u001b[0m\n\u001b[1;32m    240\u001b[0m             \u001b[0mpassed_args\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0mrun_opts\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    241\u001b[0m         )\n\u001b[0;32m--> 242\u001b[0;31m         \u001b[0mjob\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0msubmit\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m    243\u001b[0m         \u001b[0;32mreturn\u001b[0m \u001b[0mjob\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    244\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n",
-            "\u001b[0;32m/usr/local/lib/python3.12/dist-packages/qiskit_ionq/ionq_job.py\u001b[0m in \u001b[0;36msubmit\u001b[0;34m(self)\u001b[0m\n\u001b[1;32m    315\u001b[0m                 \u001b[0;34m\"Please create a job with a circuit and try again.\"\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    316\u001b[0m             )\n\u001b[0;32m--> 317\u001b[0;31m         \u001b[0mresponse\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m_client\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0msubmit_job\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mjob\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0mself\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m    318\u001b[0m         \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m_job_id\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0mresponse\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0;34m\"id\"\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    319\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n",
-            "\u001b[0;32m/usr/local/lib/python3.12/dist-packages/qiskit_ionq/helpers.py\u001b[0m in \u001b[0;36mf_retry\u001b[0;34m(*args, **kwargs)\u001b[0m\n\u001b[1;32m    866\u001b[0m             \u001b[0;32mwhile\u001b[0m \u001b[0m_tries\u001b[0m \u001b[0;34m!=\u001b[0m \u001b[0;36m0\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    867\u001b[0m                 \u001b[0;32mtry\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m--> 868\u001b[0;31m                     \u001b[0;32mreturn\u001b[0m \u001b[0mfunc\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m*\u001b[0m\u001b[0margs\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0;34m**\u001b[0m\u001b[0mkwargs\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m    869\u001b[0m                 \u001b[0;32mexcept\u001b[0m \u001b[0mexceptions\u001b[0m \u001b[0;32mas\u001b[0m \u001b[0mexception\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    870\u001b[0m                     \u001b[0m_tries\u001b[0m \u001b[0;34m-=\u001b[0m \u001b[0;36m1\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
-            "\u001b[0;32m/usr/local/lib/python3.12/dist-packages/qiskit_ionq/ionq_client.py\u001b[0m in \u001b[0;36msubmit_job\u001b[0;34m(self, job)\u001b[0m\n\u001b[1;32m    146\u001b[0m             \u001b[0mtimeout\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0;36m30\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    147\u001b[0m         )\n\u001b[0;32m--> 148\u001b[0;31m         \u001b[0mexceptions\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mIonQAPIError\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mraise_for_status\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mres\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m    149\u001b[0m         \u001b[0;32mreturn\u001b[0m \u001b[0mres\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mjson\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    150\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n",
-            "\u001b[0;32m/usr/local/lib/python3.12/dist-packages/qiskit_ionq/exceptions.py\u001b[0m in \u001b[0;36mraise_for_status\u001b[0;34m(cls, response)\u001b[0m\n\u001b[1;32m    123\u001b[0m         \u001b[0;32mif\u001b[0m \u001b[0m_is_retriable\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mresponse\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mrequest\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mmethod\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mstatus_code\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    124\u001b[0m             \u001b[0;32mraise\u001b[0m \u001b[0mIonQRetriableError\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mres\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m--> 125\u001b[0;31m         \u001b[0;32mraise\u001b[0m \u001b[0mres\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m    126\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    127\u001b[0m     \u001b[0;34m@\u001b[0m\u001b[0mclassmethod\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
-            "\u001b[0;31mIonQAPIError\u001b[0m: IonQAPIError(message='Unauthorized',status_code=401,headers={'Date': 'Tue, 04 Aug 2026 20:09:27 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'access-control-allow-credentials': 'true', 'access-control-expose-headers': 'x-ionq-session', 'ratelimit-limit': '500', 'ratelimit-remaining': '499', 'ratelimit-reset': '1', 'strict-transport-security': 'max-age=31536000; includeSubDomains', 'vary': 'Origin', 'x-frame-options': 'DENY', 'x-ratelimit-limit-second': '500', 'x-ratelimit-remaining-second': '499', 'cf-cache-status': 'DYNAMIC', 'Server': 'cloudflare', 'CF-RAY': 'a260332c7fc5e814-ORD'},body={\"error\":\"Unauthorized\",\"statusCode\":401,\"message\":\"Unauthorized\"},error_type='Unauthorized')"
+            "Submitting the circuit to ionq_simulator...\n",
+            "\n",
+            "Connection Successful!\n",
+            "Measurement counts: {'00': 48, '11': 52}\n"
           ]
         }
       ]
@@ -175,10 +149,35 @@
         "!pip install ipython"
       ],
       "metadata": {
-        "id": "TLFojJpVyXB0"
+        "id": "TLFojJpVyXB0",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "1c1c0358-f935-4e24-cddb-8bdf835b467f"
       },
       "execution_count": null,
-      "outputs": []
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Requirement already satisfied: ipython in /usr/local/lib/python3.12/dist-packages (7.34.0)\n",
+            "Requirement already satisfied: setuptools>=18.5 in /usr/local/lib/python3.12/dist-packages (from ipython) (75.2.0)\n",
+            "Requirement already satisfied: jedi>=0.16 in /usr/local/lib/python3.12/dist-packages (from ipython) (0.20.0)\n",
+            "Requirement already satisfied: decorator in /usr/local/lib/python3.12/dist-packages (from ipython) (5.3.1)\n",
+            "Requirement already satisfied: pickleshare in /usr/local/lib/python3.12/dist-packages (from ipython) (0.7.5)\n",
+            "Requirement already satisfied: traitlets>=4.2 in /usr/local/lib/python3.12/dist-packages (from ipython) (5.7.1)\n",
+            "Requirement already satisfied: prompt-toolkit!=3.0.0,!=3.0.1,<3.1.0,>=2.0.0 in /usr/local/lib/python3.12/dist-packages (from ipython) (3.0.52)\n",
+            "Requirement already satisfied: pygments in /usr/local/lib/python3.12/dist-packages (from ipython) (2.20.0)\n",
+            "Requirement already satisfied: backcall in /usr/local/lib/python3.12/dist-packages (from ipython) (0.2.0)\n",
+            "Requirement already satisfied: matplotlib-inline in /usr/local/lib/python3.12/dist-packages (from ipython) (0.2.2)\n",
+            "Requirement already satisfied: pexpect>4.3 in /usr/local/lib/python3.12/dist-packages (from ipython) (4.9.0)\n",
+            "Requirement already satisfied: parso<0.9.0,>=0.8.6 in /usr/local/lib/python3.12/dist-packages (from jedi>=0.16->ipython) (0.8.7)\n",
+            "Requirement already satisfied: ptyprocess>=0.5 in /usr/local/lib/python3.12/dist-packages (from pexpect>4.3->ipython) (0.7.0)\n",
+            "Requirement already satisfied: wcwidth in /usr/local/lib/python3.12/dist-packages (from prompt-toolkit!=3.0.0,!=3.0.1,<3.1.0,>=2.0.0->ipython) (0.8.2)\n"
+          ]
+        }
+      ]
     },
     {
       "cell_type": "code",
@@ -186,10 +185,59 @@
         "!pip install moviepy"
       ],
       "metadata": {
-        "id": "eyqH08Psyyd7"
+        "id": "eyqH08Psyyd7",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 594
+        },
+        "outputId": "f2ce4a25-a516-4ef0-919a-0b58cdcb196e"
       },
       "execution_count": null,
-      "outputs": []
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Requirement already satisfied: moviepy in /usr/local/lib/python3.12/dist-packages (1.0.3)\n",
+            "Collecting decorator<5.0,>=4.0.2 (from moviepy)\n",
+            "  Downloading decorator-4.4.2-py2.py3-none-any.whl.metadata (4.2 kB)\n",
+            "Requirement already satisfied: tqdm<5.0,>=4.11.2 in /usr/local/lib/python3.12/dist-packages (from moviepy) (4.67.3)\n",
+            "Requirement already satisfied: requests<3.0,>=2.8.1 in /usr/local/lib/python3.12/dist-packages (from moviepy) (2.32.4)\n",
+            "Requirement already satisfied: proglog<=1.0.0 in /usr/local/lib/python3.12/dist-packages (from moviepy) (0.1.12)\n",
+            "Requirement already satisfied: numpy>=1.17.3 in /usr/local/lib/python3.12/dist-packages (from moviepy) (2.0.2)\n",
+            "Requirement already satisfied: imageio<3.0,>=2.5 in /usr/local/lib/python3.12/dist-packages (from moviepy) (2.37.3)\n",
+            "Requirement already satisfied: imageio-ffmpeg>=0.2.0 in /usr/local/lib/python3.12/dist-packages (from moviepy) (0.6.0)\n",
+            "Requirement already satisfied: pillow>=8.3.2 in /usr/local/lib/python3.12/dist-packages (from imageio<3.0,>=2.5->moviepy) (11.3.0)\n",
+            "Requirement already satisfied: charset_normalizer<4,>=2 in /usr/local/lib/python3.12/dist-packages (from requests<3.0,>=2.8.1->moviepy) (3.4.9)\n",
+            "Requirement already satisfied: idna<4,>=2.5 in /usr/local/lib/python3.12/dist-packages (from requests<3.0,>=2.8.1->moviepy) (3.18)\n",
+            "Requirement already satisfied: urllib3<3,>=1.21.1 in /usr/local/lib/python3.12/dist-packages (from requests<3.0,>=2.8.1->moviepy) (2.5.0)\n",
+            "Requirement already satisfied: certifi>=2017.4.17 in /usr/local/lib/python3.12/dist-packages (from requests<3.0,>=2.8.1->moviepy) (2026.6.17)\n",
+            "Downloading decorator-4.4.2-py2.py3-none-any.whl (9.2 kB)\n",
+            "Installing collected packages: decorator\n",
+            "  Attempting uninstall: decorator\n",
+            "    Found existing installation: decorator 5.3.1\n",
+            "    Uninstalling decorator-5.3.1:\n",
+            "      Successfully uninstalled decorator-5.3.1\n",
+            "\u001b[31mERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.\n",
+            "qiskit-ionq 1.1.1 requires decorator>=5.1.0, but you have decorator 4.4.2 which is incompatible.\u001b[0m\u001b[31m\n",
+            "\u001b[0mSuccessfully installed decorator-4.4.2\n"
+          ]
+        },
+        {
+          "output_type": "display_data",
+          "data": {
+            "application/vnd.colab-display-data+json": {
+              "pip_warning": {
+                "packages": [
+                  "decorator"
+                ]
+              },
+              "id": "4e8391c4f0b04bbfbdc25dd579ce4e77"
+            }
+          },
+          "metadata": {}
+        }
+      ]
     },
     {
       "cell_type": "code",
@@ -197,10 +245,25 @@
         "!pip install google-colab ...\n"
       ],
       "metadata": {
-        "id": "W-wsMmmJX546"
+        "id": "W-wsMmmJX546",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "b49e0879-d48f-4b3e-9cf9-29c8971b468b"
       },
       "execution_count": null,
-      "outputs": []
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "\u001b[31mERROR: Invalid requirement: '...': Expected package name at the start of dependency specifier\n",
+            "    ...\n",
+            "    ^\u001b[0m\u001b[31m\n",
+            "\u001b[0m"
+          ]
+        }
+      ]
     },
     {
       "cell_type": "code",
@@ -12487,7 +12550,7 @@
       "provenance": [],
       "selectedAiContext": "default",
       "mount_file_id": "19zOSKu3blR9hPNPYPWImb7-ANoBQ2GUV",
-      "authorship_tag": "ABX9TyN9agskuxL3A9WhkrwgmbKX",
+      "authorship_tag": "ABX9TyMdTbpobQlCSmvKoI1eMlPS",
       "include_colab_link": true
     },
     "kernelspec": {
